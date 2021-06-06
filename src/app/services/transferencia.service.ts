@@ -23,9 +23,10 @@ export class TransferenciaService {
   }
 
 
-  adicionar(transferencia: any) {
+  adicionar(transferencia: Transferencia) : Observable<Transferencia> {
     this.lapidarDados(transferencia)
-    this.listaTransferencia.push(transferencia)
+
+    return this.httpClient.post<Transferencia>(this.url, transferencia)
   }
 
   private lapidarDados(transferencia: any) {
